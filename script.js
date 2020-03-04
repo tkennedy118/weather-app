@@ -19,16 +19,29 @@ $(document).ready(function() {
                 console.log(response);
                 
                 let name = response.name;
-                let temp = response.main.temp;
+                let temp = ((response.main.temp) - 273.15) * (9 / 5) + 32;
                 let humidity = response.main.humidity;
-                let windSpeed = response.wind.speed;
+                let windSpeed = response.wind.speed * 2.237;
+                let description = response.weather[0].description;
                 let icon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+
+                let span = $("<span>");
+                let spanContent = "<span><img src=\"" + icon + "\" alt=\"weather icon\" \\></span>";
 
                 console.log(name);
                 console.log(temp);
                 console.log(humidity);
                 console.log(windSpeed);
                 console.log(icon);
+
+                $("#city").html(name);
+                $("#description").html(description);
+                $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
+                $("#humidity").html("Humidity: " + humidity + " percent");
+                $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " miles per hour");
+
+                span.html(spanContent);
+                $("#description").append(span);
             });
     }
 
