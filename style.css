@@ -13,7 +13,11 @@ html, body {
     margin-bottom: 0;
 }
 
+.form-control, .card {
+    border-radius: 0;
+}
+
 #sidebar {
     border-right: 1px solid #eee;
-    padding: 2em 1em;
+    /* padding: 2em 1em; */
 }

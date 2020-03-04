@@ -26,29 +26,29 @@
 
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col-sm-4 col-lg-3" id="sidebar">
+            <div class="col-sm-4 col-lg-3 px-3 py-4" id="sidebar">
                 <!-------------------------------------- SIDEBAR -------------------------------------->
                 <section>
                     <div class="input-group mb-4">
                         <input type="text" class="form-control" placeholder="Nashville, TN" aria-label="enter city to search here">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="search">
+                            <button class="btn btn-dark rounded-0" type="button" id="search">
                                 <i class="fas fa-search-location"></i>
                             </button>
                         </div>
                     </div>
                     <div class="list-group">
-                        <button type="button" class="list-group-item list-group-item-action">New York City</button>
-                        <button type="button" class="list-group-item list-group-item-action">Chicago</button>
-                        <button type="button" class="list-group-item list-group-item-action">Charleston</button>
-                        <button type="button" class="list-group-item list-group-item-action">Las Vegas</button>
-                        <button type="button" class="list-group-item list-group-item-action">Seattle</button>
-                        <button type="button" class="list-group-item list-group-item-action">San Francisco</button>
-                        <button type="button" class="list-group-item list-group-item-action">Washington</button>
-                        <button type="button" class="list-group-item list-group-item-action">New Orleans</button>
-                        <button type="button" class="list-group-item list-group-item-action">Palm Springs</button>
-                        <button type="button" class="list-group-item list-group-item-action">St. Louis</button>
-                        <button type="button" class="list-group-item list-group-item-action">Boston</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">New York City</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Chicago</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Charleston</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Las Vegas</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Seattle</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">San Francisco</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Washington</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">New Orleans</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Palm Springs</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">St. Louis</button>
+                        <button type="button" class="list-group-item list-group-item-action rounded-0">Boston</button>
                     </div>
                 </section>
                 <!-- ------------------------------------------------------------------------------- -->
@@ -56,7 +56,18 @@
             <div class="col-sm-8 col-lg-9">
                 <main>
                     <div class="row" id="city-forecast">
-
+                        <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title display-3"></h5>
+                              <p class="card-text lead" id="description"><span id="icon"></span></p>
+                              <br>
+                              <p class="card-text" id="temperature"></p>
+                              <p class="card-text" id="humidity"></p>
+                              <p class="card-text" id="windSpeed"></p>
+                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                            <img class="card-img-bottom" src="" alt="Card image cap">
+                          </div>
                     </div>
                 </main>
                 <section>
