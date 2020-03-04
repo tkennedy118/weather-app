@@ -4,6 +4,16 @@
     margin: 0;
 }
 
-body {
+html, body {
     font-family: 'Lato', sans-serif;
+    height: 100%
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+#sidebar {
+    border-right: 1px solid #eee;
+    padding: 2em 1em;
 }

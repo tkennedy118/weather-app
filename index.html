@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap, Google fonts -->
+    <!-- Bootstrap, Fontawesome, Google fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
 
     <!-- my css -->
@@ -16,10 +17,58 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container text-center">
-            <h1 class="display-4">Weather</h1>
+            <header>
+                <h2 class="display-4">Weather</h2>
+            </header>
             <p class="lead">Plan your day with the touch of a button.</p>
         </div>
     </div>
+
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-sm-4 col-lg-3" id="sidebar">
+                <!-------------------------------------- SIDEBAR -------------------------------------->
+                <section>
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Nashville, TN" aria-label="enter city to search here">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="search">
+                                <i class="fas fa-search-location"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <button type="button" class="list-group-item list-group-item-action">New York City</button>
+                        <button type="button" class="list-group-item list-group-item-action">Chicago</button>
+                        <button type="button" class="list-group-item list-group-item-action">Charleston</button>
+                        <button type="button" class="list-group-item list-group-item-action">Las Vegas</button>
+                        <button type="button" class="list-group-item list-group-item-action">Seattle</button>
+                        <button type="button" class="list-group-item list-group-item-action">San Francisco</button>
+                        <button type="button" class="list-group-item list-group-item-action">Washington</button>
+                        <button type="button" class="list-group-item list-group-item-action">New Orleans</button>
+                        <button type="button" class="list-group-item list-group-item-action">Palm Springs</button>
+                        <button type="button" class="list-group-item list-group-item-action">St. Louis</button>
+                        <button type="button" class="list-group-item list-group-item-action">Boston</button>
+                    </div>
+                </section>
+                <!-- ------------------------------------------------------------------------------- -->
+            </div>
+            <div class="col-sm-8 col-lg-9">
+                <main>
+                    <div class="row" id="city-forecast">
+
+                    </div>
+                </main>
+                <section>
+                    <div class="row" id="five-day-forecast">
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
     
 
     <!-- jQuery, javascript file for the Bootstrap's javascript file to function -->
