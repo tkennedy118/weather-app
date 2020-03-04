@@ -38,7 +38,7 @@ $(document).ready(function() {
                 $("#description").html(description);
                 $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
                 $("#humidity").html("Humidity: " + humidity + " percent");
-                $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " miles per hour");
+                $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " mph");
 
                 span.html(spanContent);
                 $("#description").append(span);
