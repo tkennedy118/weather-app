@@ -7,7 +7,7 @@
     <!-- Bootstrap, Fontawesome, Google fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700&display=swap" rel="stylesheet">
 
     <!-- my css -->
     <link rel="stylesheet" href="style.css" />
@@ -16,11 +16,10 @@
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
-        <div class="container text-center">
+        <div class="container">
             <header>
-                <h2 class="display-4">Weather</h2>
+                <h2 class="display-4">Get the weather when you need it.</h2>
             </header>
-            <p class="lead">Plan your day with the touch of a button.</p>
         </div>
     </div>
 
@@ -53,13 +52,13 @@
                 </section>
                 <!-- ------------------------------------------------------------------------------- -->
             </div>
-            <div class="col-sm-8 col-lg-9">
+            <div class="col-sm-8 col-lg-9 w-100">
                 <main>
                     <div class="row" id="city-forecast">
-                        <div class="card">
+                        <div class="card w-100">
                             <div class="card-body">
-                                <h3 class="card-title display-3" id="city"></h3>
-                                <p class="card-text small" id="description"></p>
+                                <h3 class="card-title display-3 text-center" id="city"></h3>
+                                <p class="card-text small text-center" id="description"></p>
                                 <br>
                                 <p class="card-text" id="temperature"></p>
                                 <p class="card-text" id="humidity"></p>
