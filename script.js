@@ -3,6 +3,7 @@ $(document).ready(function() {
     /************************************* GLOBAL VARIABLES **************************************/
 
     let key = "d0ae07cdf36be7b5b427e0cb559afe4e"
+    var city;
 
 
 
@@ -28,12 +29,6 @@ $(document).ready(function() {
                 let span = $("<span>");
                 let spanContent = "<span><img src=\"" + icon + "\" alt=\"weather icon\" \\></span>";
 
-                console.log(name);
-                console.log(temp);
-                console.log(humidity);
-                console.log(windSpeed);
-                console.log(icon);
-
                 $("#city").html(name);
                 $("#description").html(description);
                 $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
@@ -45,11 +40,20 @@ $(document).ready(function() {
             });
     }
 
+    const getCity = function() {
+
+        let city = $("#city").val();
+
+        console.log(city);
+
+    }
 
 
 
     /*************************************** EVENT HANDLERS **************************************/
     
     showCurrentWeather();
+
+    $("#search").on("click", getCity);
 
 });
