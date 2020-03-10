@@ -10,8 +10,6 @@ $(document).ready(function() {
 
         let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
 
-        console.log(queryURL);
-
         // ajax request to display weather info
         $.ajax({
             url: queryURL, 
@@ -89,13 +87,8 @@ $(document).ready(function() {
 
     const setLocalStorage = function(response) {
 
-        console.log("inside localstorage");
-        console.log(response);
-
         let city = response.name;
         var index;
-
-        // exit function if user input was bad
 
         // get array of cities from local storage
         let arr = JSON.parse(localStorage.getItem("cityArr"));
@@ -128,9 +121,13 @@ $(document).ready(function() {
     // user clicks search icon
     $("#search").on("click", function() {
 
+        // get input value
         let city = $("#city-input").val();
 
+        // get weather data and display it
         showCurrentWeather(city);
+
+        $("#city-input").val("");
     });
 
     // user presses enter
