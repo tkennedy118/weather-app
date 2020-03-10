@@ -3,22 +3,18 @@ $(document).ready(function() {
     /************************************* GLOBAL VARIABLES **************************************/
 
     let key = "d0ae07cdf36be7b5b427e0cb559afe4e"
-    var city;
-
-
 
     /***************************************** FUNCTIONS *****************************************/
 
-    const showCurrentWeather = function() {
+    const showCurrentWeather = function(city) {
 
-        let city = "nashville,tennessee";
         let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
 
+        // ajax request to display weather info
         $.ajax({url: queryURL, method: "GET"})
             .then(function(response) {
-
-                console.log(response);
                 
+                // variables obtained from current weather data API
                 let name = response.name;
                 let temp = ((response.main.temp) - 273.15) * (9 / 5) + 32;
                 let humidity = response.main.humidity;
@@ -27,9 +23,10 @@ $(document).ready(function() {
                 let icon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
 
                 let span = $("<span>");
-                let spanContent = "<span><img src=\"" + icon + "\" alt=\"weather icon\" \\></span>";
+                let spanContent = "<img src=\"" + icon + "\" alt=\"weather icon\" \\>";
 
-                $("#city").html(name);
+                // display to page
+                $("#city-display").html(name);
                 $("#description").html(description);
                 $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
                 $("#humidity").html("Humidity: " + humidity + " percent");
@@ -37,23 +34,77 @@ $(document).ready(function() {
 
                 span.html(spanContent);
                 $("#description").append(span);
+
+                // show uv information
+                showUV(response);
+            });
+    }
+    
+    const showUV = function(response) {
+
+        let lat = response.coord.lat;
+        let lon = response.coord.lon;
+
+        let queryURL = "http://api.openweathermap.org/data/2.5/uvi?&lat=" + encodeURI(lat) + "&lon=" + encodeURI(lon) + "&appid=" + encodeURI(key)
+
+        // ajax request to display uv info
+        $.ajax({url: queryURL, method: "GET"})
+            .then(function(response) {
+
+                var color;
+                let val = response.value;
+
+                // create span to display uv color
+                let span = $("<span>");
+
+                if (val < 3) {
+
+                    color = "green";
+                } else if (val < 6) {
+
+                    color = "yellow";
+                } else if (val < 8 ) {
+
+                    color = "orange";
+                } else {
+                    
+                    color = "red";
+                }
+
+                // span properties, id located in css
+                span.attr("id", "uv-icon");
+                span.css("background-color", color);
+
+                // display to page
+                $("#uv-index").html("UV Index: " + val);
+                $("#uv-index").append(span);
             });
     }
 
-    const getCity = function() {
-
-        let city = $("#city").val();
-
-        console.log(city);
-
-    }
-
-
 
     /*************************************** EVENT HANDLERS **************************************/
-    
-    showCurrentWeather();
 
-    $("#search").on("click", getCity);
+    // user clicks search icon
+    $("#search").on("click", function() {
+
+        let city = $("#city-input").val();
+
+        showCurrentWeather(city);
+    });
+
+    // user presses enter
+    $("#city-input").on("keyup", function(event) {
+
+        // number 13 is the "Enter" key on a keyboard
+        if (event.keyCode === 13) {
+            event.preventDefault();
+
+            // change focus
+            $("#search").focus();
+
+            // trigger click event
+            $("#search").click();
+        }
+    });
 
 });

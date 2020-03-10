@@ -29,7 +29,7 @@
                 <!-------------------------------------- SIDEBAR -------------------------------------->
                 <section>
                     <div class="input-group mb-4">
-                        <input type="text" class="form-control" placeholder="Nashville, TN" aria-label="enter city to search here"id="city">
+                        <input type="text" class="form-control" placeholder="Nashville" aria-label="enter city to search here" id="city-input">
                         <div class="input-group-append">
                             <button class="btn btn-dark rounded-0" type="button" id="search">
                                 <i class="fas fa-search-location"></i>
@@ -57,12 +57,13 @@
                     <div class="row" id="city-forecast">
                         <div class="card w-100">
                             <div class="card-body">
-                                <h3 class="card-title display-3 text-center mb-0" id="city"></h3>
+                                <h3 class="card-title display-3 text-center mb-0" id="city-display"></h3>
                                 <p class="card-text small text-center" id="description"></p>
                                 <br>
                                 <p class="card-text" id="temperature"></p>
                                 <p class="card-text" id="humidity"></p>
                                 <p class="card-text" id="wind-speed"></p>
+                                <p class="card-text" id="uv-index"></p>
                                 </div>
                           </div>
                     </div>
