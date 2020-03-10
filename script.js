@@ -10,9 +10,13 @@ $(document).ready(function() {
 
         let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
 
+        console.log(queryURL);
+
         // ajax request to display weather info
-        $.ajax({url: queryURL, method: "GET"})
-            .then(function(response) {
+        $.ajax({
+            url: queryURL, 
+            method: "GET",
+            success: function(response) {
                 
                 // variables obtained from current weather data API
                 let name = response.name;
@@ -35,11 +39,13 @@ $(document).ready(function() {
                 span.html(spanContent);
                 $("#description").append(span);
 
-                // show uv information
+                // set local storage and display uv info
                 showUV(response);
-            });
+                setLocalStorage(response);
+            }
+        });
     }
-    
+
     const showUV = function(response) {
 
         let lat = response.coord.lat;
@@ -81,6 +87,41 @@ $(document).ready(function() {
             });
     }
 
+    const setLocalStorage = function(response) {
+
+        console.log("inside localstorage");
+        console.log(response);
+
+        let city = response.name;
+        var index;
+
+        // exit function if user input was bad
+
+        // get array of cities from local storage
+        let arr = JSON.parse(localStorage.getItem("cityArr"));
+
+        // array was found in local storage
+        if (arr !== null) {
+
+            if (arr.includes(city)) {
+
+                // remove the item from its current index.
+                // this is done to keep track of most recent searches
+                index = arr.indexOf(city);
+                arr.splice(index, 1);
+            }
+        }
+
+        // array not found in local storage
+        else {
+            arr = [];
+        }
+        
+        // push to local storage
+        arr.push(city);
+        localStorage.setItem("cityArr", JSON.stringify(arr));
+    }
+
 
     /*************************************** EVENT HANDLERS **************************************/
 
@@ -106,5 +147,4 @@ $(document).ready(function() {
             $("#search").click();
         }
     });
-
 });
