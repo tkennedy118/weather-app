@@ -15,6 +15,8 @@ $(document).ready(function() {
             url: queryURL, 
             method: "GET",
             success: function(response) {
+
+                console.log(response);
                 
                 // variables obtained from current weather data API
                 let name = response.name;
@@ -156,11 +158,24 @@ $(document).ready(function() {
         })
     }
 
+    // FUNCTION: enter most recent locally stored city to display automatically
+    const onPageLoad = function() {
+
+        if (localStorage.getItem("cityArr") !== null) {
+
+            // get most recently queried city
+            let storedCities = JSON.parse(localStorage.getItem("cityArr"));
+            let mostRecent = storedCities[storedCities.length - 1];
+
+            showCurrentWeather(mostRecent);
+        }
+    }
+
 
     /*************************************** EVENT HANDLERS **************************************/
 
     // on page load
-    populateRecents();
+    onPageLoad();
 
     // user clicks search icon
     $("#search").on("click", function() {
