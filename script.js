@@ -38,14 +38,14 @@ $(document).ready(function() {
                 $("#description").append(span);
 
                 // set local storage, display uv info, update recents on page
-                showUV(response);
+                showUV(response, city);
                 setLocalStorage(response);
                 populateRecents();
             }
         });
     }
 
-    const showUV = function(response) {
+    const showUV = function(response, city) {
 
         let lat = response.coord.lat;
         let lon = response.coord.lon;
@@ -83,6 +83,11 @@ $(document).ready(function() {
                 // display to page
                 $("#uv-index").html("UV Index: " + val);
                 $("#uv-index").append(span);
+
+                // get current date from API and set global current day
+                currentDay = response.date_iso.split("").splice(0, 10).join("");
+
+                getFiveDayForecast(city, currentDay);
             });
     }
 
@@ -169,6 +174,38 @@ $(document).ready(function() {
         }
     }
 
+    // Function: display the current date in the DOM
+    const displayCurrentDate = function(currentDay) {
+
+        // get each part of date into a variable
+        // let month = date.splice(5, 2).join("");
+        // let day = date.splice(6, 2).join("");
+        // let year = date.splice(0, 4).join("");
+    }
+
+    const getFiveDayForecast = function(city, currentDay) {
+
+        console.log("inside function");
+        let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
+
+        // call function to display current day
+        displayCurrentDate(currentDay);
+        console.log("inside getFiveDayForecast: " + currentDay);
+
+        // ajax request to display weather info
+        $.ajax({
+            url: queryURL, 
+            method: "GET",
+            success: function(response) {
+
+                response.list.forEach(function(forecast) {
+
+                    // console.log(forecast);
+                    
+                }); 
+            }
+        });
+    }
 
     /*************************************** EVENT HANDLERS **************************************/
 
