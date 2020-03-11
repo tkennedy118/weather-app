@@ -37,9 +37,10 @@ $(document).ready(function() {
                 span.html(spanContent);
                 $("#description").append(span);
 
-                // set local storage and display uv info
+                // set local storage, display uv info, update recents on page
                 showUV(response);
                 setLocalStorage(response);
+                populateRecents();
             }
         });
     }
@@ -119,7 +120,7 @@ $(document).ready(function() {
 
         let recents = $("#recents");
         var citiesToDisplay;
-        var storedCities; 
+        var storedCities = []; 
         
         // set citiesToDisplay to locally stored cities, else set to popular cities
         if (localStorage.getItem("cityArr") !== null) {
@@ -135,19 +136,30 @@ $(document).ready(function() {
 
                 citiesToDisplay = storedCities;
             }
-        } else {
-            // there were no locally stored cities
-            citiesToDisplay = ["Nashville", "Chicago", "Las Vegas", "Seattle", 
-                               "San Francisco", "Washington", "New Orleans", "Palm Springs", 
-                               "St. Louis", "Boston", "New York City", "Charleston"];
         }
 
-        
+        // clear current
+        recents.empty();
+
+        // display cities to sidebar
+        citiesToDisplay.forEach(function(city) {
+
+            let button = $("<button>");
+
+            button.attr({
+                type: "button",
+                class: "list-group-item list-group-item-action round-0"
+            });
+            button.html(city);
+
+            recents.append(button);
+        })
     }
 
 
     /*************************************** EVENT HANDLERS **************************************/
 
+    // on page load
     populateRecents();
 
     // user clicks search icon
