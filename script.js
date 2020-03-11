@@ -216,7 +216,7 @@ $(document).ready(function() {
                         let icon = "http://openweathermap.org/img/w/" + forecast.weather[0].icon + ".png";
 
                         let span = $("<span>");
-                        let spanContent = "<img src=\"" + icon + "\" alt=\"weather icon\" \\>";
+                        let spanContent = "<img src=\"" + icon + "\" alt=\"weather icon\" class='small'\\>";
 
                         // <h3 class="card-title text-center five-day-date"></h3>
                         // <p class="card-text small text-center five-day-des"></p>
@@ -227,10 +227,12 @@ $(document).ready(function() {
                         // display to page
                         $(".five-day-des").eq(index).html(description);
                         $(".five-day-temp").eq(index).html("Temperature: " + temp.toFixed(2) + "&#176");
-                        $(".five-day-hum").eq(index).html("Humidity: " + humidity + " percent");
+                        $(".five-day-hum").eq(index).html("Humidity: " + humidity + "%");
 
-                        // span.html(spanContent);
-                        // $("#description").append(span);
+                        span.html(spanContent);
+                        $(".five-day-des").eq(index).append(span);
+
+                        // next item in class list
                         index ++;
                     }
                 }); 
