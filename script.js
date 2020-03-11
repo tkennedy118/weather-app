@@ -115,8 +115,40 @@ $(document).ready(function() {
         localStorage.setItem("cityArr", JSON.stringify(arr));
     }
 
+    const populateRecents = function() {
+
+        let recents = $("#recents");
+        var citiesToDisplay;
+        var storedCities; 
+        
+        // set citiesToDisplay to locally stored cities, else set to popular cities
+        if (localStorage.getItem("cityArr") !== null) {
+
+            // get stored cities
+            storedCities = JSON.parse(localStorage.getItem("cityArr")).reverse();
+
+            // keep max length at 12
+            if (storedCities.length > 12) {
+
+                citiesToDisplay = storedCities.splice(0, 12);
+            } else {
+
+                citiesToDisplay = storedCities;
+            }
+        } else {
+            // there were no locally stored cities
+            citiesToDisplay = ["Nashville", "Chicago", "Las Vegas", "Seattle", 
+                               "San Francisco", "Washington", "New Orleans", "Palm Springs", 
+                               "St. Louis", "Boston", "New York City", "Charleston"];
+        }
+
+        
+    }
+
 
     /*************************************** EVENT HANDLERS **************************************/
+
+    populateRecents();
 
     // user clicks search icon
     $("#search").on("click", function() {
