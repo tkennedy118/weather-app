@@ -15,8 +15,6 @@ $(document).ready(function() {
             url: queryURL, 
             method: "GET",
             success: function(response) {
-
-                console.log(response);
                 
                 // variables obtained from current weather data API
                 let name = response.name;
@@ -150,7 +148,7 @@ $(document).ready(function() {
 
             button.attr({
                 type: "button",
-                class: "list-group-item list-group-item-action round-0"
+                class: "list-group-item list-group-item-action round-0 recent-cities"
             });
             button.html(city);
 
@@ -203,4 +201,11 @@ $(document).ready(function() {
             $("#search").click();
         }
     });
+
+    $(document).on("click", ".recent-cities", function() {
+
+        let city = $(this).text();
+
+        showCurrentWeather(city);
+    })
 });
