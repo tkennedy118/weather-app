@@ -209,22 +209,28 @@ $(document).ready(function() {
                         console.log(forecastDate + " " + time);
 
                         // variables obtained from API
-                        let temp = ((response.main.temp) - 273.15) * (9 / 5) + 32;
-                        let humidity = response.main.humidity;
-                        let icon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+                        let temp = ((forecast.main.temp) - 273.15) * (9 / 5) + 32;
+                        let humidity = forecast.main.humidity;
+                        let icon = "http://openweathermap.org/img/w/" + forecast.weather[0].icon + ".png";
 
                         let span = $("<span>");
                         let spanContent = "<img src=\"" + icon + "\" alt=\"weather icon\" \\>";
+
+                        // <h3 class="card-title text-center five-day-date"></h3>
+                        // <p class="card-text small text-center five-day-des"></p>
+                        // <br>
+                        // <p class="card-text five-day-temp"></p>
+                        // <p class="card-text five-day humidity"></p>
                         
                         // display to page
-                        $("#city-display").html(name);
-                        $("#description").html(description);
-                        $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
-                        $("#humidity").html("Humidity: " + humidity + " percent");
-                        $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " mph");
+                        // $("#city-display").html(name);
+                        // $("#description").html(description);
+                        // $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
+                        // $("#humidity").html("Humidity: " + humidity + " percent");
+                        // $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " mph");
 
-                        span.html(spanContent);
-                        $("#description").append(span);
+                        // span.html(spanContent);
+                        // $("#description").append(span);
                     }
                 }); 
             }
