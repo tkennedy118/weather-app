@@ -185,12 +185,10 @@ $(document).ready(function() {
 
     const getFiveDayForecast = function(city, currentDay) {
 
-        console.log("inside function");
         let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
 
         // call function to display current day
         displayCurrentDate(currentDay);
-        console.log("inside getFiveDayForecast: " + currentDay);
 
         // ajax request to display weather info
         $.ajax({
@@ -198,10 +196,36 @@ $(document).ready(function() {
             method: "GET",
             success: function(response) {
 
+                // get last time value for comparison
+                let [mostRecentForecast, mostRecentTime] = response.list[39].dt_txt.split(" ");
+
                 response.list.forEach(function(forecast) {
 
-                    // console.log(forecast);
+                    // get date and time
+                    let [forecastDate, time] = forecast.dt_txt.split(" ");
                     
+                    // use weather info from the most recent time of the last day, for the next 5 days
+                    if (forecastDate !== currentDay && time === mostRecentTime) {
+                        console.log(forecastDate + " " + time);
+
+                        // variables obtained from API
+                        let temp = ((response.main.temp) - 273.15) * (9 / 5) + 32;
+                        let humidity = response.main.humidity;
+                        let icon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+
+                        let span = $("<span>");
+                        let spanContent = "<img src=\"" + icon + "\" alt=\"weather icon\" \\>";
+                        
+                        // display to page
+                        $("#city-display").html(name);
+                        $("#description").html(description);
+                        $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
+                        $("#humidity").html("Humidity: " + humidity + " percent");
+                        $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " mph");
+
+                        span.html(spanContent);
+                        $("#description").append(span);
+                    }
                 }); 
             }
         });
