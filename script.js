@@ -198,6 +198,7 @@ $(document).ready(function() {
 
                 // get last time value for comparison
                 let [mostRecentForecast, mostRecentTime] = response.list[39].dt_txt.split(" ");
+                let index = 0;
 
                 response.list.forEach(function(forecast) {
 
@@ -211,6 +212,7 @@ $(document).ready(function() {
                         // variables obtained from API
                         let temp = ((forecast.main.temp) - 273.15) * (9 / 5) + 32;
                         let humidity = forecast.main.humidity;
+                        let description = forecast.weather[0].description;
                         let icon = "http://openweathermap.org/img/w/" + forecast.weather[0].icon + ".png";
 
                         let span = $("<span>");
@@ -223,14 +225,13 @@ $(document).ready(function() {
                         // <p class="card-text five-day humidity"></p>
                         
                         // display to page
-                        // $("#city-display").html(name);
-                        // $("#description").html(description);
-                        // $("#temperature").html("Temperature: " + temp.toFixed(2) + "&#176");
-                        // $("#humidity").html("Humidity: " + humidity + " percent");
-                        // $("#wind-speed").html("Wind Speed: " + windSpeed.toFixed(2) + " mph");
+                        $(".five-day-des").eq(index).html(description);
+                        $(".five-day-temp").eq(index).html("Temperature: " + temp.toFixed(2) + "&#176");
+                        $(".five-day-hum").eq(index).html("Humidity: " + humidity + " percent");
 
                         // span.html(spanContent);
                         // $("#description").append(span);
+                        index ++;
                     }
                 }); 
             }

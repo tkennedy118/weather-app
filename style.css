@@ -39,6 +39,7 @@ html, body {
     margin-left: 10px;
 }
 
+
 /* 100% height should only apply on medium screens and up */
 @media (min-width: 768px) {
     #full-row {
