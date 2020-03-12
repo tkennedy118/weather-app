@@ -6,11 +6,11 @@
 
 html, body {
     font-family: 'Merriweather Sans', sans-serif;
-    height: 100%
+    /* height: 100% */
 }
 
 .jumbotron {
-    margin-bottom: 0;
+    background-image: linear-gradient(to bottom, rgb(212, 212, 212), rgb(167, 167, 167));
 }
 
 .form-control, .card {
@@ -18,12 +18,11 @@ html, body {
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: 1px solid rbg(0, 0, 0, .125);
 }
 
-.card-body {
+.card {
     color: rgb(0, 0, 0);
-    background-color: rgb(183, 241, 252);
+    background-image: linear-gradient(to bottom right, rgb(183, 227, 252), rgb(49, 176, 250));
 }
 
 #sidebar {
@@ -32,7 +31,7 @@ html, body {
 }
 
 .five-day-card p, .five-day-date {
-    font-size: .7em;
+    font-size: .6em;
 }
 
 #uv-icon {
@@ -43,10 +42,16 @@ html, body {
     margin-left: 10px;
 }
 
+#footer {
+    height: 60px;
+    background-image: linear-gradient(to bottom, rgb(151, 151, 151), rgb(104, 104, 104));
+    box-shadow: 0 50vh 0 50vh rgb(104, 104, 104);
+}
 
-/* 100% height should only apply on medium screens and up */
+
+/* //100% height should only apply on medium screens and up
 @media (min-width: 768px) {
     #full-row {
         height: 100%;
     }
-}
+} */

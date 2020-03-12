@@ -177,8 +177,6 @@ $(document).ready(function() {
     // Function: transform the date format and return new format
     const transformDate = function(date) {
 
-        console.log(date);
-
         // get each part of date into a variable
         let month = date.substring(5, 7);
         let day = date.slice(8);
