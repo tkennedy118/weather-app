@@ -174,21 +174,22 @@ $(document).ready(function() {
         }
     }
 
-    // Function: display the current date in the DOM
-    const displayCurrentDate = function(currentDay) {
+    // Function: transform the date format and return new format
+    const transformDate = function(date) {
+
+        console.log(date);
 
         // get each part of date into a variable
-        // let month = date.splice(5, 2).join("");
-        // let day = date.splice(6, 2).join("");
-        // let year = date.splice(0, 4).join("");
+        let month = date.substring(5, 7);
+        let day = date.slice(8);
+        let year = date.slice(0, 4);
+
+        return (month + "/" + day + "/" + year);
     }
 
     const getFiveDayForecast = function(city, currentDay) {
 
         let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
-
-        // call function to display current day
-        displayCurrentDate(currentDay);
 
         // ajax request to display weather info
         $.ajax({
@@ -207,7 +208,9 @@ $(document).ready(function() {
                     
                     // use weather info from the most recent time of the last day, for the next 5 days
                     if (forecastDate !== currentDay && time === mostRecentTime) {
-                        console.log(forecastDate + " " + time);
+
+                        //rearrange date
+                        let date = transformDate(forecastDate);
 
                         // variables obtained from API
                         let temp = ((forecast.main.temp) - 273.15) * (9 / 5) + 32;
@@ -215,25 +218,22 @@ $(document).ready(function() {
                         let description = forecast.weather[0].description;
                         let icon = "http://openweathermap.org/img/w/" + forecast.weather[0].icon + ".png";
 
-                        let span = $("<span>");
-                        let spanContent = "<img src=\"" + icon + "\" alt=\"weather icon\" class='small'\\>";
-
-                        // <h3 class="card-title text-center five-day-date"></h3>
-                        // <p class="card-text small text-center five-day-des"></p>
-                        // <br>
-                        // <p class="card-text five-day-temp"></p>
-                        // <p class="card-text five-day humidity"></p>
+                        let div = $("<div>");
+                        let divContent = "<img src=\"" + icon + "\" alt=\"weather icon\" class='small'\\>";
                         
                         // display to page
+                        $(".five-day-date").eq(index).html(date);
                         $(".five-day-des").eq(index).html(description);
                         $(".five-day-temp").eq(index).html("Temperature: " + temp.toFixed(2) + "&#176");
                         $(".five-day-hum").eq(index).html("Humidity: " + humidity + "%");
 
-                        span.html(spanContent);
-                        $(".five-day-des").eq(index).append(span);
+                        div.html(divContent);
+                        $(".five-day-date").eq(index).append(div);
+
 
                         // next item in class list
                         index ++;
+
                     }
                 }); 
             }
