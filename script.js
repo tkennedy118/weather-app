@@ -187,7 +187,7 @@ $(document).ready(function() {
 
     const getFiveDayForecast = function(city, currentDay) {
 
-        let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
+        let queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
 
         // ajax request to display weather info
         $.ajax({
