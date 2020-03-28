@@ -50,7 +50,7 @@ $(document).ready(function() {
         let lat = response.coord.lat;
         let lon = response.coord.lon;
 
-        let queryURL = "http://api.openweathermap.org/data/2.5/uvi?&lat=" + encodeURI(lat) + "&lon=" + encodeURI(lon) + "&appid=" + encodeURI(key);
+        let queryURL = "https://api.openweathermap.org/data/2.5/uvi?&lat=" + encodeURI(lat) + "&lon=" + encodeURI(lon) + "&appid=" + encodeURI(key);
 
         // ajax request to display uv info
         $.ajax({url: queryURL, method: "GET"})
@@ -187,7 +187,7 @@ $(document).ready(function() {
 
     const getFiveDayForecast = function(city, currentDay) {
 
-        let queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
+        let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + encodeURI(city) + "&appid=" + encodeURI(key);
 
         // ajax request to display weather info
         $.ajax({
